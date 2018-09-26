@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="fluid.js"></script>
+    <link rel="stylesheet" type="text/css" href="fluid.css">
+    <script>
+        window.addEventListener('load', function() {
+            new Fluid()
+                .addTemplate('position', 0, 50, function(target, context) {
+                    target.style.opacity = context.effect.fade();
+                    target.querySelector('.value').textContent = context.position;
+                    target.querySelector('.range').textContent = context.range.position;
+                    target.style.left = (context.position * 20) + 'px';
+                })
+                .addTemplate('range', 10, 20, function (target, context) {
+                    target.style.opacity = context.effect.fade();
+                    target.querySelector('.value').textContent = context.position;
+                    target.querySelector('.range').textContent = context.range.position;
+                }).start();
+        });
+    </script>
+</head>
+<body>
+<script id="position-template" type="text/x-handlebars-template">
+    <div class="position">Item One<span class="value">--</span> / <span class="range">--</span></div>
+</script>
+<script id="range-template" type="text/x-handlebars-template">
+    <div class="rangeItem">Item Two<span class="value">--</span> / <span class="range">--</span></div>
+</script>
+<div id="content"></div>
+</body>
+</html>
