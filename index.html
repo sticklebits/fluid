@@ -1,33 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="fluid.js"></script>
-    <link rel="stylesheet" type="text/css" href="fluid.css">
+    <script src="page-control.js"></script>
+    <link rel="stylesheet" type="text/css" href="dev-process.css">
     <script>
-        window.addEventListener('load', function() {
-            new Fluid()
-                .addTemplate('position', 0, 50, function(target, context) {
-                    context.effect.fade(target);
-                    context.effect.fix(target, 300, 20);
-                    target.querySelector('.value').textContent = context.position;
-                    target.querySelector('.range').textContent = context.direction;
-
-                })
-                .addTemplate('range', 10, 20, function (target, context) {
-                    context.effect.fade(target);
-                    target.querySelector('.value').textContent = context.position;
-                    target.querySelector('.range').textContent = context.movement;
-                }).start();
+        window.addEventListener('load', function () {
+            new PageControl().start();
         });
     </script>
 </head>
 <body>
-<script id="position-template" type="text/x-handlebars-template">
-    <div class="position">Item One<span class="value">--</span> / <span class="range">--</span></div>
-</script>
-<script id="range-template" type="text/x-handlebars-template">
-    <div class="rangeItem">Item Two<span class="value">--</span> / <span class="range">--</span></div>
-</script>
-<div id="fluid-content"></div>
+<div class="section scoping">
+    <div class="detail toggle-class" data-control-group="desc" data-control-target="scoping-desc"
+         data-control-class="expanded">
+        <div class="section-title">Scoping Phase</div>
+        <div class="infographic"></div>
+    </div>
+</div>
+<div id="scoping-desc" class="description scoping">
+    <div class="detail">
+<p>        The first thing we do on a project is listen.
+</p>
+        <p>
+        We want to understand as much as we can about your project. Why do you want to build this? Who will it serve?
+        What will it do? We want to get on board with your ambition and set ourselves up for a great project.
+        </p>
+        <p>
+        This phase of the process will often include a ‘Design Sprint’; a focused week of collaboration between our team
+        and yours. The week ends with real users testing an initial prototype of a specific feature, screen or idea for
+        the app
+        </p>
+        <p>
+        You can read more about how we’ve used Design Sprints in
+        the past
+        </p>
+    </div>
+</div>
+<div class="section discovery">
+    <div class="detail toggle-class" data-control-group="desc" data-control-target="discovery-desc"
+         data-control-class="expanded">
+        <div class="section-title">Discovery Phase</div>
+        <div class="infographic"></div>
+    </div>
+</div>
+<div id="discovery-desc" class="description discovery">
+    <div class="detail">
+<p>
+        The first thing we do on a project is listen.
+</p>
+        We want to understand as much as we can about your project. Why do you want to build this? Who will it serve?
+        What will it do? We want to get on board with your ambition and set ourselves up for a great project.
+<p>
+        This phase of the process will often include a ‘Design Sprint’; a focused week of collaboration between our team
+        and yours. The week ends with real users testing an initial prototype of a specific feature, screen or idea for
+    the app</p>
+
+        <p>You can read more about how we’ve used Design Sprints in
+            the past</p>
+    </div>
+
+</div>
+<div class="section development">
+    <div class="detail toggle-class" data-control-group="desc" data-control-target="development-desc"
+         data-control-class="expanded">
+        <div class="section-title">Development Phase</div>
+        <div class="infographic"></div>
+    </div>
+</div>
+<div id="development-desc" class="description development">
+    <div class="detail">
+        <p>This is where your product begins to come to life.</p>
+        <p> We create a set of designs for your features, constantly referring to what we’ve learnt in the discovery
+            phase.
+            We’ll work hard, with you, to find the perfect balance between visual aesthetics and usability. This
+            includes
+            designing for all eventualities: What if the user is offline? What about different devices? What happens
+            when
+            the
+            content is loading?</p>
+        <p>Our developers use these designs to build a fully functioning app, written with the future in mind and
+            championing
+            best practices. We make the best use of the latest techniques, such as automated testing, to produce robust,
+            intuitive work. We also make the best use of being a team by peer-reviewing our work as we go along,
+            checking our progress is consistently strong.</p>
+        <p>Once we’re happy that we’ve built the required features, we’ll work with your team to help you test the app.
+            With the features complete, we’ll walk you through the release process too.</p>
+    </div>
+</div>
+<div class="section ongoing-relationship">
+    <div class="detail toggle-class" data-control-group="desc" data-control-target="ongoing-relationship-desc"
+         data-control-class="expanded">
+        <div class="section-title">Ongoing Relationship</div>
+        <div class="infographic"></div>
+    </div>
+</div>
+<div id="ongoing-relationship-desc" class="description ongoing-relationship">
+    <div class="detail">
+        <p>Our processes create successful products and long-lasting relationships. Most of our clients have been with us
+        for
+            many years.</p>
+
+        <p>We believe that getting the first release out into the stores is only the first step in an ongoing commitment to
+        excellence. We strive for continuous improvement, so we’ll
+            talk to you about our ideas for your app going forward.</p>
+
+        <p>Throughout the project we’ll be taking extensive design notes, recording technical decisions and keeping track
+        of
+        meeting discussions. This means that we are in a great position to pick up the project at any point in the
+        future
+            and carry on working together.</p>
+    </div>
+</div>
+<div class="section navigation">
+    <div class="navigation-item scoping toggle-class" data-control-group="desc" data-control-target="scoping-desc"
+         data-control-class="expanded">
+        <div class="title">Scoping</div>
+    </div>
+    <div class="navigation-item discovery toggle-class" data-control-group="desc" data-control-target="discovery-desc"
+         data-control-class="expanded">
+        <div class="title">Discovery</div>
+    </div>
+    <div class="navigation-item development toggle-class" data-control-group="desc" data-control-target="development-desc"
+         data-control-class="expanded">
+        <div class="title">Development</div>
+    </div>
+    <div class="navigation-item ongoing-relationship toggle-class" data-control-group="desc" data-control-target="ongoing-relationship-desc"
+         data-control-class="expanded">
+        <div class="title">Ongoing Relationship</div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    background-color: #EDEDED;
+}
+
+.section {
+    position: relative;
+    height: 503px;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section.scoping {
+    margin-top: 296px;
+}
+
+.section.discovery {
+    background-color: #BCEBFA;
+}
+
+.section.development {
+    background-color: #FFF5B3;
+}
+
+.section.ongoing-relationship {
+    background-color: #DBECBC;
+}
+
+.section .detail,
+.description .detail {
+    width: 566px;
+}
+
+.section .detail {
+    position: absolute;
+    top: 54px;
+    height: 400px;
+}
+
+.section .section-title {
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.section .infographic {
+    width: 268px;
+    height: 268px;
+    position: absolute;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.navigation-item.scoping,
+.section.scoping .infographic {
+    background-image: url("infographic/scoping.svg");
+}
+
+.navigation-item.discovery,
+.section.discovery .infographic {
+    background-image: url("infographic/discovery.svg");
+}
+
+.navigation-item.development,
+.section.development .infographic {
+    background-image: url("infographic/development.svg");
+}
+
+.navigation-item.ongoing-relationship,
+.section.ongoing-relationship .infographic {
+    background-image: url("infographic/relationship.svg");
+}
+
+.section.navigation {
+    position: fixed;
+    top: 0px;
+    height: 296px;
+    padding-top: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 24px 0 rgba(0,0,0,0.2);
+}
+
+.navigation .navigation-item {
+    position: relative;
+    margin-left: 68.5px;
+    margin-right: 68.5px;
+    width: 162px;
+    height: 122px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.navigation .navigation-item .title {
+    position: absolute;
+    bottom: -32px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+}
+
+.description {
+    overflow: hidden;
+    background-color: #fff;
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+    transition: height 0.5s ease-in-out;
+}
+
+.description.expanded {
+    height: 400px;
+}
