@@ -2,6 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
     background-color: #EDEDED;
+    margin-top: 296px;
 }
 
 .section {
@@ -15,7 +16,7 @@ body {
 }
 
 .section.scoping {
-    margin-top: 296px;
+
 }
 
 .section.discovery {
@@ -39,6 +40,9 @@ body {
     position: absolute;
     top: 54px;
     height: 400px;
+    background-image: url("infographic/descriptors.svg");
+    background-position: left 266px center;
+    background-repeat: no-repeat;
 }
 
 .section .section-title {
@@ -49,10 +53,10 @@ body {
 
 .section .infographic {
     width: 268px;
-    height: 268px;
+    height: 288px;
     position: absolute;
     left: 0;
-    background-position: center center;
+    background-position: center top 20px;
     background-repeat: no-repeat;
 }
 
@@ -101,6 +105,12 @@ body {
     left: 0px;
     right: 0px;
     text-align: center;
+    border-bottom: 2px solid transparent;
+}
+
+.navigation .navigation-item.highlighted .title {
+    color: #21BBEE;
+    border-bottom: 2px solid #21BBEE;
 }
 
 .description {
