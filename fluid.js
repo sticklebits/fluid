@@ -1,6 +1,7 @@
 function Fluid() {
     this.height = 2000;
     this.position = 0;
+    this.lastPosition = 0;
     this.viewModel = [];
     this.defaults = {
         fade: {
@@ -60,11 +61,14 @@ Fluid.prototype.updateItem = function updateItem(item, position) {
         rangePosition = (100 / range) * rangePosition;
         item.update(item.element, {
             position: position,
+            movement: position - this.lastPosition,
+            direction: (position > this.lastPosition) ? 'Down' : (position < this.lastPosition) ? 'Up' : '',
             range: {
                 position: rangePosition
             },
             effect: {
-                fade: this.fade(rangePosition)
+                fade: this.fade(rangePosition),
+                fix: this.fix(position)
             }
         });
     }
@@ -72,7 +76,7 @@ Fluid.prototype.updateItem = function updateItem(item, position) {
 
 Fluid.prototype.fade = function fade(rangePosition) {
     let defaults = this.defaults;
-    return function (optional_fadeIn, optional_fadeOut) {
+    return function (target, optional_fadeIn, optional_fadeOut) {
         let fadeIn = optional_fadeIn || defaults.fade.in;
         let fadeOut = optional_fadeOut || optional_fadeIn || defaults.fade.out;
         let opacity = 1;
@@ -81,7 +85,19 @@ Fluid.prototype.fade = function fade(rangePosition) {
         } else if (rangePosition > (100 - fadeOut)) {
             opacity = 1 - ((rangePosition - (100 - fadeOut)) / fadeOut);
         }
+        target.style.opacity = opacity;
         return opacity;
+    };
+};
+
+Fluid.prototype.fix = function fix(position) {
+    return function(target, x, y) {
+        if (typeof x === 'number') {
+            target.style.left = x + 'px';
+        }
+        if (typeof y === 'number') {
+            target.style.top = (y + position) + 'px';
+        }
     };
 };
 
@@ -100,12 +116,13 @@ Fluid.prototype.scroller = function scroller() {
             let bounds = element.getBoundingClientRect();
             let position = (100 / (bounds.height - document.documentElement.clientHeight + 16)) * top;
             this.update(this.viewModel, position);
+            this.lastPosition = position;
         }.bind(this));
     }.bind(this));
 };
 
 Fluid.prototype.content = function content() {
-    return this.element('content');
+    return this.element('fluid-content');
 };
 
 Fluid.prototype.element = function element(id, config) {

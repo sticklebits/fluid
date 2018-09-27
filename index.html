@@ -7,15 +7,16 @@
         window.addEventListener('load', function() {
             new Fluid()
                 .addTemplate('position', 0, 50, function(target, context) {
-                    target.style.opacity = context.effect.fade();
+                    context.effect.fade(target);
+                    context.effect.fix(target, 300, 20);
                     target.querySelector('.value').textContent = context.position;
-                    target.querySelector('.range').textContent = context.range.position;
-                    target.style.left = (context.position * 20) + 'px';
+                    target.querySelector('.range').textContent = context.direction;
+
                 })
                 .addTemplate('range', 10, 20, function (target, context) {
-                    target.style.opacity = context.effect.fade();
+                    context.effect.fade(target);
                     target.querySelector('.value').textContent = context.position;
-                    target.querySelector('.range').textContent = context.range.position;
+                    target.querySelector('.range').textContent = context.movement;
                 }).start();
         });
     </script>
@@ -27,6 +28,6 @@
 <script id="range-template" type="text/x-handlebars-template">
     <div class="rangeItem">Item Two<span class="value">--</span> / <span class="range">--</span></div>
 </script>
-<div id="content"></div>
+<div id="fluid-content"></div>
 </body>
 </html>
