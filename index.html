@@ -2,28 +2,48 @@
 <html>
 <head>
     <title>Fluid</title>
-    <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="scripts/vendor/d3.min.js"></script>
-    <script src="scripts/fluid.js"></script>
+    <script src="scripts/Fluid.js"></script>
+    <script src="scripts/FluidEffect.js"></script>
+    <script src="scripts/FluidElement.js"></script>
+    <script src="scripts/FluidSection.js"></script>
     <link rel="stylesheet" href="assets/css/fluid.css">
+    <link rel="stylesheet" href="assets/css/default.css">
     <script>
-        $(function() {
-            new Fluid().start();
+        $(function () {
+            new Fluid()
+                .addHelper('visible', function (target, context) {
+                    target.find('#display').text(JSON.stringify(context, null, 2));
+                    context.effect.fade(target);
+                })
+                .start();
         });
     </script>
 </head>
 <body>
-<div class="section">
-
+<div class="section first" data-fluid-effects="visible(0,25,-1,-1)">
+    <div class="section-title">FIRST SECTION</div>
+    <div id="display">HELLO</div>
+    <!--<div id="display" class="output">Range Output:</div>-->
+    <!--<div class="section-title" data-fluid-effects="visible(0,100)">First Section-->
+        <!--<span data-fluid-effects="visible(25,75)"> is best</span>-->
+    <!--</div>-->
+    <!--<div class="scroll-arrow" data-fluid-effects="visible(0,10)">Scroll down</div>-->
 </div>
-<div class="section">
-
+<div class="section second" data-fluid-effects="visible(25,50,-1,-1)">
+    <div class="section-title">SECOND SECTION</div>
+    <div id="display">HELLO</div>
+    <!--<div class="section-title" data-fluid-effects="visible(5,20)">Second Section</div>-->
 </div>
-<div class="section">
-
+<div class="section third" data-fluid-effects="visible(50,75,-1,-1)">
+    <div class="section-title">THIRD SECTION</div>
+    <div id="display">HELLO</div>
 </div>
-<div class="section">
-
+<div class="section fourth" data-fluid-effects="visible(75,100,-1,-1)">
+    <div class="section-title">FOURTH SECTION</div>
+    <div id="display">HELLO</div>
 </div>
 </body>
 </html>

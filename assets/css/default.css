@@ -1,0 +1,61 @@
+.section {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.section.first {
+    background-color: #000000;
+}
+
+.section.second {
+    background-color: #630000;
+}
+
+.section.third {
+    background-color: #306641;
+}
+
+.section.fourth {
+    background-color: #5453aa;
+}
+
+.section.always {
+    background-color: transparent;
+}
+
+.section-title {
+    font-size: 36px;
+    color: red;
+}
+
+.scroll-arrow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px;
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.5);
+    text-align: center;
+}
+
+.output {
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    color: white;
+}
+
+#display {
+    position: fixed;
+    left: 10px;
+    top: 100px;
+    padding: 10px;
+    border: 1px solid yellow;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+}
