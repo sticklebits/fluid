@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a77ecb12-a971-4a28-a813-707d8ea983e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/default.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/fluid.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/fluid.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/Fluid.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Fluid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/FluidEffect.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/FluidEffect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/FluidElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/FluidElement.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -53,16 +48,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="4287" />
-          <entry key="html" value="5175" />
-          <entry key="js" value="28593" />
+          <entry key="html" value="5205" />
+          <entry key="js" value="28687" />
           <entry key="svg" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="4287" />
-          <entry key="HTML" value="5175" />
-          <entry key="JavaScript" value="28593" />
+          <entry key="HTML" value="5205" />
+          <entry key="JavaScript" value="28687" />
           <entry key="SVG" value="9" />
         </counts>
       </usages-collector>
@@ -75,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" selection-start-line="43" selection-end-line="46" selection-end-column="6" />
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -112,8 +107,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/Fluid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+            <state relative-caret-position="431">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -273,12 +268,12 @@
       <workItem from="1538042888239" duration="15483000" />
       <workItem from="1540816787310" duration="28181000" />
       <workItem from="1540977633323" duration="2000" />
-      <workItem from="1545049113428" duration="9953000" />
+      <workItem from="1545049113428" duration="10688000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73596000" />
+    <option name="totallyTimeSpent" value="74331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
@@ -287,7 +282,7 @@
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24970461" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.329927" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -376,15 +371,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" selection-start-line="43" selection-end-line="46" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Fluid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+        <state relative-caret-position="431">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
         </state>
       </provider>
     </entry>

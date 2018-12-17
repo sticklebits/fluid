@@ -123,12 +123,11 @@ Fluid.prototype.update = function update(elements, absolute_position) {
 Fluid.prototype.fade = function fade(context) {
     return function (target) {
         let opacity = 1;
-        if (context.range.position < 0 || context.range.position > 100) {
+        if (context.range.position <= 0 || context.range.position >= 100) {
             opacity = 0;
-        }
-        if (context.range.position < context.lead.in) {
+        } else if (context.lead.in > 0 && context.range.position < context.lead.in) {
             opacity = context.range.position / context.lead.in;
-        } else if (context.range.position > (100 - context.lead.out)) {
+        } else if (context.lead.out > 0 && context.range.position > (100 - context.lead.out)) {
             opacity = 1 - ((context.range.position - (100 - context.lead.out)) / context.lead.out);
         }
         target.css('opacity', opacity);
