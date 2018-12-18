@@ -1,13 +1,13 @@
 function Fluid() {
-    this.height = 2000;
+    this.height = 500;
     this.position = 0;
     this.lastPosition = 0;
     this.helpers = {};
     this.elements = [];
     this.defaults = {
         lead: {
-            in: 10,
-            out: 10
+            in: 0,
+            out: 0
         }
     };
 }
@@ -41,26 +41,16 @@ Fluid.prototype.createUpdaters = function createUpdaters(element, helpers) {
         let regexp = /([A-z]*)\((.*)\)\s*/mgi;
         let match = regexp.exec(helper);
         let key = match[1];
-        let params = match[2].split(',');
+        let params = match[2].split(',').map(function (item) {
+            return parseFloat(item);
+        });
 
         if (Object.prototype.hasOwnProperty.call(helpers, key)) {
-            let leadIn = parseFloat(params[2] || defaults.lead.in);
-            let leadOut = parseFloat(params[3] || defaults.lead.out);
-
-            let start = Math.min(parseFloat(params[0]), parseFloat(params[0]) + leadIn);
-            let stop = Math.max(parseFloat(params[1]), parseFloat(params[1]) - leadOut);
-
             let updater = {
                 element: element,
-                start: start,
-                stop: stop,
-                lead: {
-                    in: Math.abs(leadIn),
-                    out: Math.abs(leadOut)
-                },
+                params: params,
                 update: helpers[key]
             };
-            console.log(updater);
             updaters.push(updater);
         }
     });
@@ -82,39 +72,25 @@ Fluid.prototype.processModel = function processModel(model, container) {
 };
 
 Fluid.prototype.update = function update(elements, absolute_position) {
+    let scrollHeight = this.scroller().getBoundingClientRect().height;
     elements.forEach(function (item) {
         item.updaters.forEach(function (updater) {
             let position = parseFloat(item.element.attr('data-fluid-position-relative') || absolute_position);
-            let rangeSize = updater.stop - updater.start;
-
-            let offset = -updater.start;
-
-            let range = {
-                size: rangeSize,
-                position: (100 / rangeSize) * Math.min(Math.max(updater.start + offset, position + offset), rangeSize)
-            };
-
-            item.element.find('[data-fluid-effects]').attr('data-fluid-position-relative', range.position);
-
+            let parentHeight = item.element[0].parentElement.getBoundingClientRect().height;
             let context = {
+                timeline: this.timelineContextFromParameters(updater.params, position),
+                pos: this.positionContextFromParameters(updater.params, position, parentHeight),
                 position: position,
                 movement: position - this.lastPosition,
-                start: updater.start,
-                stop: updater.stop,
-                lead: {
-                    in: (100 / rangeSize) * updater.lead.in,
-                    out: (100 / rangeSize) * updater.lead.out
-                },
+                params: updater.params,
                 direction: (position > this.lastPosition) ? 'Down' : (position < this.lastPosition) ? 'Up' : '',
-                range: range,
                 effect: null
             };
-
+            item.element.find('[data-fluid-effects]').attr('data-fluid-position-relative', context.timeline.range.position);
             context.effect = {
                 fade: this.fade(context),
                 fix: this.fix(context)
             };
-
             updater.update(item.element, context);
         }.bind(this));
     }.bind(this));
@@ -123,27 +99,66 @@ Fluid.prototype.update = function update(elements, absolute_position) {
 Fluid.prototype.fade = function fade(context) {
     return function (target) {
         let opacity = 1;
-        if (context.range.position <= 0 || context.range.position >= 100) {
+        let timeline = context.timeline;
+        if (timeline.range.position < 0 || timeline.range.position >= 100) {
             opacity = 0;
-        } else if (context.lead.in > 0 && context.range.position < context.lead.in) {
-            opacity = context.range.position / context.lead.in;
-        } else if (context.lead.out > 0 && context.range.position > (100 - context.lead.out)) {
-            opacity = 1 - ((context.range.position - (100 - context.lead.out)) / context.lead.out);
+        } else if (timeline.lead.in > 0 && timeline.range.position < timeline.lead.in) {
+            opacity = timeline.range.position / timeline.lead.in;
+        } else if (timeline.lead.out > 0 && timeline.range.position > (100 - timeline.lead.out)) {
+            opacity = 1 - ((timeline.range.position - (100 - timeline.lead.out)) / timeline.lead.out);
         }
         target.css('opacity', opacity);
         return opacity
     };
 };
 
-Fluid.prototype.fix = function fix(position) {
-    return function (target, x, y) {
-        if (typeof x === 'number') {
-            target.style.left = x + 'px';
-        }
-        if (typeof y === 'number') {
-            target.style.top = (y + position) + 'px';
+Fluid.prototype.fix = function fix(context) {
+    return function (target) {
+        let left = context.params[0];
+        let top = context.params[1];
+        let position = {
+            left: left,
+            top: context.pos.y
+        };
+        target.css('left', position.left + 'px');
+        target.css('top', position.top + 'px');
+        return position;
+    };
+};
+
+Fluid.prototype.timelineContextFromParameters = function timelineContextFromParameters(params, position) {
+    let leadIn = params[2] || this.defaults.lead.in;
+    let leadOut = params[3] || this.defaults.lead.out;
+
+    let start = Math.min(params[0], params[0] + leadIn);
+    let stop = Math.max(params[1], params[1] - leadOut);
+
+    let rangeSize = stop - start;
+
+    let offset = -start;
+
+    return {
+        start: start,
+        stop: stop,
+        lead: {
+            in: Math.abs(leadIn),
+            out: Math.abs(leadOut)
+        },
+        range: {
+            size: rangeSize,
+            position: (100 / rangeSize) * Math.min(Math.max(start + offset, position + offset), rangeSize)
         }
     };
+};
+
+Fluid.prototype.positionContextFromParameters = function positionContextFromParameters(params, position, parentHeight) {
+    let x = parseFloat(params[0] || 0);
+    let y = parseFloat(params[1] || 0);
+
+    return {
+        x: x,
+        y: (parentHeight / 100) * (y - position)
+    }
 };
 
 Fluid.prototype.setScrollHeight = function setScrollHeight(height) {
