@@ -20,31 +20,40 @@
                 .addHelper('fix', function (target, context) {
                     context.effect.fix(target);
                 })
+                .addHelper('stretchScale', function (target, context) {
+                    let scale = 100;
+                    if (context.position < 0) {
+                        scale = 100 + (Math.abs(context.position) * context.params[0]);
+                        target.css('background-position', 'center center');
+                    }
+                    target.css('background-size', scale + '% ' + scale + '%');
+                })
+                .addHelper('parallax', function (target, context) {
+                    let y = 0;
+                    if (context.position > 0) {
+                        y = ((100 - context.position) - 100) * context.params[0];
+                        target.css('background-position', 'center ' + y + 'px');
+                    }
+                })
+                .addHelper('stick', function (target, context) {
+                    if (context.position > context.params[0]) {
+                        target.css('top', (6 * context.params[0]) + 'px');
+                    }
+                })
                 .start();
         });
     </script>
 </head>
 <body>
-<div class="section first" data-fluid-effects="fix(0,0) visible(0,25,0,-10)">
-    <div class="section-title">pull to refresh
-        <div>HELLO</div>
-    </div>
-    <div class="section-title" data-fluid-effects="fix(0,50) visible(10,100,10,10)">First Section
-        <span data-fluid-effects="visible(20,75)"> is best</span>
-    </div>
-    <div class="scroll-arrow" data-fluid-effects="visible(0,10,,10)">Scroll down</div>
+<div class="section first" data-fluid-effects="stretchScale(10) parallax(50)">
+    <div class="centered-title">LIFE IN THE DESERT</div>
+    <div class="title-menu" data-fluid-effects="visible(10,100,0,0)">Home | About | Contact</div>
 </div>
-<div class="section second" data-fluid-effects="fix(0,25) visible(25,50,-10,-1)">
-    <div class="section-title">SECOND SECTION</div>
-
+<div class="section second" data-fluid-effects="fix(0,10) stick(9.4)">
 </div>
 <div class="section third" data-fluid-effects="visible(50,75) fix(0,50)">
-    <div class="section-title">THIRD SECTION</div>
-
 </div>
 <div class="section fourth" data-fluid-effects="fix(0,75) visible(75,100,0,-10)">
-    <div class="section-title">FOURTH SECTION</div>
 </div>
-<div data-fluid-effects="fix(0,10)">THIS SHOULD SCROLL UP WITH THE PAGE</div>
 </body>
 </html>

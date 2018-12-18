@@ -86,7 +86,7 @@ Fluid.prototype.update = function update(elements, absolute_position) {
                 direction: (position > this.lastPosition) ? 'Down' : (position < this.lastPosition) ? 'Up' : '',
                 effect: null
             };
-            item.element.find('[data-fluid-effects]').attr('data-fluid-position-relative', context.timeline.range.position);
+            item.element.find('[data-fluid-effects]').attr('data-fluid-position-relative', context.position);
             context.effect = {
                 fade: this.fade(context),
                 fix: this.fix(context)
@@ -157,7 +157,8 @@ Fluid.prototype.positionContextFromParameters = function positionContextFromPara
 
     return {
         x: x,
-        y: (parentHeight / 100) * (y - position)
+        y: (parentHeight / 100) * (y - position),
+        height: parentHeight
     }
 };
 

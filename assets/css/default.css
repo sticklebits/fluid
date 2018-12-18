@@ -11,7 +11,7 @@ body {
 }
 
 .section.first {
-    background-color: #000000;
+    background-image: url("../img/background.jpg");
 }
 
 .section.second {
@@ -62,4 +62,10 @@ body {
     background-color: black;
     color: white;
     font-size: 14px;
+}
+
+.centered-title {
+    font-family: arial, sans-serif;
+    font-size: 48px;
+    color: white;
 }
